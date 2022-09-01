@@ -19,8 +19,19 @@ This script adds execution permission to the owner, the group owner and other us
 This script sets the permission to the file 'hello' to give the 'Owner' no permission at all, 'Group' no permission at all, 'Other users' all the permissions
 ## 9-John_Doe
 This script sets the mode of the file 'hello' to '-rwxr-x-wx'
-## 10
-
-## 11
-
-## 12 
+## 10-mirror_permissions
+This script sets the mode of the file 'hello' the same as that of 'olleh'
+## 11-directories_permissions
+This script adds execute permission to all subdirectories of the current directory for the owner, group owner and all other users without changing regular files
+## 12-directory_permissions
+This script creates 'my_dir' directory with permissions 751 in the working directory
+## 13-change_group
+This script changes the group owner to 'school' for the file hello
+## 100-change_owner_and_group
+This script changes the owner to 'vicent' and group owner to 'staff' for all the files and directories in the working directory
+## 101-symbolic_link_permissions
+This script changes the owner and group owner of 'hello' to 'vincent' and 'staff' respectively
+## 102-if_only
+This script changes the owner of the file 'hello' to 'betty' only if it is owned by the user 'guillaume'
+## 103-Star_Wars
+This script plays the StarWars IV episode in the terminal
