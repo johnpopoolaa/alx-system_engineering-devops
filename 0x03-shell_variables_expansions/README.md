@@ -27,3 +27,11 @@ This script converts a number from base 2 to base 10, the number in base 2 shoul
 This script prints all possible combinations of two letters in lower case except 'oo' line by line and should be in alphabetic order
 ## 13-print_float
 This script prints a number with two decimal places and stores it in the environment variable 'NUM'
+## 100-decimal_to_hexadecimal
+This script converts a number from base 10 that is stored in the environment variable 'DECIMAL' to base 16
+## 101-rot13
+This script encodes and decodes text using the rot13 encryption
+## 102-odd
+This script prints every other line from input starting with the first line
+## 103-water_and_stir
+This script adds the two numbers stored in the environment variables 'WATER' that is in base 'water' and 'STIR' that is in base 'stir' and prints the result in base 'bestchol'
