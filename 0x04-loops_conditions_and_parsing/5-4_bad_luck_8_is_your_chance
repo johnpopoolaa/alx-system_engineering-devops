@@ -4,7 +4,7 @@ n=1
 
 while [ $n -le 10 ]
 do
-	if [ $n -eq 4]
+	if [ $n -eq 4 ]
 	then
 		echo "bad luck"
 	elif [ $n -eq 8 ]
