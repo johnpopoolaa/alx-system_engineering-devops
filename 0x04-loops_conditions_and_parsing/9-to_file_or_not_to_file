@@ -6,13 +6,13 @@ filename="School"
 if [ -e $filename ]
 then
 	echo "School file exists"
-	if [ -s $filrname ]
+	if [ -s $filename ]
 	then
 		echo "School file is not empty"
 	else
 		echo "School file is empty"
 	fi
-	if [-f $filename ]
+	if [ -f $filename ]
 	then
 		echo "School is a regular file"
 	fi
