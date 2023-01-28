@@ -9,11 +9,13 @@ then
 	if [ -s $filrname ]
 	then
 		echo "School file is not empty"
+	else
+		echo "School file is empty"
 	fi
 	if [-f $filename ]
 	then
 		echo "School is a regular file"
 	fi
 else
-	excho "School file does not exist"
+	echo "School file does not exist"
 fi
