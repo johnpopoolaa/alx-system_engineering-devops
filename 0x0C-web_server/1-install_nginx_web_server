@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Install Nginx
+sudo apt-get update
+sudo apt-get install nginx -y
+
+# Configure Nginx to listen on port 80
+sudo sed -i 's/ listen 80 default_Server;/ listen 80;/' /etc/nginx/sites-available//default
+
+# Restart Nginx
+sudo killall nginx
+sudo /usr/sbin/nginx
+
+# Check that Nginx is running
+sudo systemctl status nginx
+
+# Create a default page for Nginx
+echo "Hello World!" | sudo tee /var/www/html/index.html
