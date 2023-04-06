@@ -1,12 +1,26 @@
 #!/usr/bin/env bash
-# Install Nginx, and redirect to Nyan Cat
+# This script configures an Nginx web server to redirect requests to the /redirect_me location to a YouTube page with a "301 Moved Permanently" response
 
-sudo apt update -y
-sudo apt upgrade -y
-sudo apt install nginx -y
-sudo service nginx start
-echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
-new_string='server_name _;\n\n\trewrite \^\/redirect_me https:\/\/www.youtube.com\/watch\?v=QH2-TGUlwu4 permanent;/'
-sudo sed -i "s/server_name _;\$/${new_string}" /etc/nginx/sites-available/default
-sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-sudo service nginx restart
+# Update package lists
+sudo apt-get update
+
+# Install Nginx web server
+sudo apt-get install -y nginx
+
+# Allow Nginx traffic through firewall
+sudo ufw allow 'Nginx HTTP'
+
+# Set up redirect
+REDIRECT_RULE='
+    location /redirect_me {
+	return 301 https://youtube.com/watch?v=QH2-TGUlwu4;
+    }
+'
+sudo sed -i "/^\s*server_name\s*_/a $REDIRECT_RULE" /etc/nginx/sites-available/default
+
+# Set up landing page
+LANDING_PAGE='Hello World!'
+echo "$LANDING_PAGE" | sudo tee /var/www/html/index.nginx-debian.html > /dev/null
+
+# Restart Nginx
+sudo systemctl restart nginx
