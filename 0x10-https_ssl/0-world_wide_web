@@ -1,21 +1,16 @@
 #!/usr/bin/env bash
-# Function to display information about subdomains
-function get_subdomain_info() {
-  local domain="$1"
-  local subdomain="$2"
+# This script retrieves DNS records for specified subdomains and prints the results
 
-  # If subdomain is provided, only show information for that subdomain
-  if [[ -n "$subdomain" ]]; then
-    dig "$subdomain.$domain" +short | awk -v sd="$subdomain" 'BEGIN {print "ANSWER SECTION:"} {print "The subdomain " sd " is a " $4 " record and points to " $5}'
-  else
-    # Show information for default subdomains www, lb-01, web-01, and web-02
-    dig "www.$domain" +short | awk 'BEGIN {print "ANSWER SECTION:"} {print "The subdomain www is a " $4 " record and points to " $5}'
-    dig "lb-01.$domain" +short | awk 'BEGIN {print "ANSWER SECTION:"} {print "The subdomain lb-01 is a " $4 " record and points to " $5}'
-    dig "web-01.$domain" +short | awk 'BEGIN {print "ANSWER SECTION:"} {print "The subdomain web-01 is a " $4 " record and points to " $5}'
-    dig "web-02.$domain" +short | awk 'BEGIN {print "ANSWER SECTION:"} {print "The subdomain web-02 is a " $4 " record and points to " $5}'
-  fi
+dns_records () {
+    if [ -n "$2" ]
+    then
+        dig "$2.$1" +short | awk -v sd="$2" '{printf "The subdomain " sd " is a " $1 " record and points to " $0 "\n"}'
+    else
+        dig "www.$1" +short | awk '{printf "The subdomain www is a " $1 " record and points to " $0 "\n"}'
+        dig "lb-01.$1" +short | awk '{printf "The subdomain lb-01 is a " $1 " record and points to " $0 "\n"}'
+        dig "web-01.$1" +short | awk '{printf "The subdomain web-01 is a " $1 " record and points to " $0 "\n"}'
+        dig "web-02.$1" +short | awk '{printf "The subdomain web-02 is a " $1 " record and points to " $0 "\n"}'
+    fi
 }
 
-# Call the function with provided arguments
-get_subdomain_info "$1" "$2"
-
+dns_records "$1" "$2"
