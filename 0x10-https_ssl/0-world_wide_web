@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# This script retrieves DNS records for specified subdomains and prints the results
+
+dns_records () {
+    if [ -n "$2" ]
+    then
+        dig "$2.$1" +short | awk -v sd="$2" '{printf "The subdomain " sd " is a A record and points to " $0 "\n"}'
+    else
+        dig "www.$1" +short | awk '{printf "The subdomain www is a A record and points to " $0 "\n"}'
+        dig "lb-01.$1" +short | awk '{printf "The subdomain lb-01 is a A record and points to " $0 "\n"}'
+        dig "web-01.$1" +short | awk '{printf "The subdomain web-01 is a A record and points to " $0 "\n"}'
+        dig "web-02.$1" +short | awk '{printf "The subdomain web-02 is a A record and points to " $0 "\n"}'
+    fi
+}
+
+dns_records "$1" "$2"
