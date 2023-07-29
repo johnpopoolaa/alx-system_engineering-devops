@@ -10,7 +10,7 @@ sed -i 's/listen 80 default_server;/listen 80;/g' /etc/nginx/sites-available/def
 
 # configure nginx to return 'Hello World!' when queried.
 
-echo 'Hello World' | sudo tee /var/www/html/index.html
+echo 'Hello World!' | sudo tee /var/www/html/index.html
 
 # restart nginx so as to apply changes
 
